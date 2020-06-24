@@ -4,6 +4,7 @@ var startPage = document.querySelector("#start-page");
 var placeholderDiv = document.querySelector("#place-holder");
 var allButtons;
 var question1Options = ["2", "A string is a datatype", "A string can be mutated", "A string is denoted by quotation marks at the beginning and end", "A string can be saved to local storage on the browser"];
+var question2Options = ["1", "Python", "JavaScript", "CSS", "html"];
 var newQuestion;
 var newButton;
 var newButtons;
@@ -57,6 +58,30 @@ function setUpQuestion1() {
 }
 
 function setUpQuestion2() {
+    makeNewQuestionContainer();
+    var question2Prompt = document.createElement("h1");
+    question2Prompt.innerHTML = "Which of these programming languages is not considered a web-development language";
+    newQuestion.appendChild(question2Prompt);
+    addTwoBreaks(newQuestion);
+    for (i = 1; i < question2Options.length; i += 1) {
+        newButton = document.createElement("button");
+        newButton.innerHTML = i + ") " + question2Options[i];
+        newButton.classList.add("button");
+        newButton.classList.add("answer-button");
+        if (parseInt(question2Options[0]) === i) {
+            newButton.setAttribute("data-correct", "true");
+        } else {
+            newButton.setAttribute("data-correct", "false");
+        }
+        newButton.style.float = "left";
+        newQuestion.appendChild(newButton);
+        addTwoBreaks(newQuestion);
+    }
+    placeholderDiv.appendChild(newQuestion);
+    addNewEventListeners();
+}
+
+function setUpQuestion3() {
     makeNewQuestionContainer();
 }
 
