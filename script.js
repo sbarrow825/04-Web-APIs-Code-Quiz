@@ -75,8 +75,9 @@ function addNewEventListeners() {
 }
 
 function checkIfCorrect() {
+    newHR = document.createElement("hr");
+    newQuestion.appendChild(newHR);
     var correct = this.getAttribute("data-correct");
-    console.log(correct);
     if (correct === "true") {
         displayCorrect()
     } else {
@@ -85,9 +86,14 @@ function checkIfCorrect() {
 }
 
 function displayCorrect() {
-
+    correctMessage = document.createElement("p");
+    correctMessage.innerHTML = "Correct!";
+    newQuestion.appendChild(correctMessage);
 }
 
 function displayFalse() {
+    incorrectMessage = document.createElement("p");
+    incorrectMessage.innerHTML = "Incorrect";
+    newQuestion.appendChild(incorrectMessage);
 
 }
