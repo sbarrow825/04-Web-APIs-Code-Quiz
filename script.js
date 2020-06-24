@@ -95,5 +95,5 @@ function displayFalse() {
     incorrectMessage = document.createElement("p");
     incorrectMessage.innerHTML = "Incorrect";
     newQuestion.appendChild(incorrectMessage);
-
+    secondsLeft.innerHTML -= 10;
 }
