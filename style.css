@@ -1,3 +1,5 @@
-.time-counter {
-    float: right;
-}
+.button {
+    background-color: purple;
+    color: white;
+    text-align: center;
+  }
