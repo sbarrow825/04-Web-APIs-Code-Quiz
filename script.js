@@ -8,6 +8,7 @@ var newQuestion;
 var newButton;
 var newButtons;
 var newBreak;
+var currentQuestion = 0;
 // var introTextTitle = document.querySelector("#intro-text-title");
 // var startButtonText = document.querySelector("#start-button-text");
 
@@ -47,13 +48,16 @@ function setUpQuestion1() {
         } else {
             newButton.setAttribute("data-correct", "false");
         }
-        // console.log(newButton.getAttribute("data-correct"));
         newButton.style.float = "left";
         newQuestion.appendChild(newButton);
         addTwoBreaks(newQuestion);
     }
     placeholderDiv.appendChild(newQuestion);
     addNewEventListeners();
+}
+
+function setUpQuestion2() {
+    makeNewQuestionContainer();
 }
 
 function addTwoBreaks(parentElement) {
@@ -64,7 +68,10 @@ function addTwoBreaks(parentElement) {
 }
 
 function makeNewQuestionContainer() {
-    newQuestion = document.createElement("card");
+    if (newQuestion) {
+        newQuestion.remove();
+    }
+    newQuestion = document.createElement("div");
 }
 
 function addNewEventListeners() {
@@ -89,6 +96,7 @@ function displayCorrect() {
     correctMessage = document.createElement("p");
     correctMessage.innerHTML = "Correct!";
     newQuestion.appendChild(correctMessage);
+    setTimeout(nextQuestion, 1000);
 }
 
 function displayFalse() {
@@ -96,4 +104,16 @@ function displayFalse() {
     incorrectMessage.innerHTML = "Incorrect";
     newQuestion.appendChild(incorrectMessage);
     secondsLeft.innerHTML -= 10;
+    setTimeout(nextQuestion, 1000);
+}
+
+function nextQuestion() {
+    currentQuestion += 1;
+    if (currentQuestion === 1) {
+        setUpQuestion2();
+    } else if (currentQuestion === 2) {
+        setUpQuestion3();
+    } else {
+        setUpQuestion4();
+    }
 }
