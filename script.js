@@ -12,6 +12,8 @@ var newButton;
 var newButtons;
 var newBreak;
 var currentQuestion = 0;
+var numberCorrect = 0;
+var numberTotalQuestions = 4;
 // var introTextTitle = document.querySelector("#intro-text-title");
 // var startButtonText = document.querySelector("#start-button-text");
 
@@ -28,6 +30,9 @@ function startCountdown() {
 
 function tick() {
     secondsLeft.innerHTML -= 1;
+    if (secondsLeft.innerHTML <= 0) {
+        displayEndScreen();
+    }
 }
 
 function setUpQuiz() {
@@ -131,6 +136,22 @@ function setUpQuestion4() {
     addNewEventListeners();
 }
 
+function displayEndScreen() {
+    makeNewQuestionContainer();
+    var endScreenMessage = document.createElement("h1");
+    endScreenMessage.innerHTML = "All done!";
+    newQuestion.appendChild(endScreenMessage);
+    addTwoBreaks(newQuestion);
+    var yourScore = document.createElement("p");
+    yourScore.innerHTML = "Your final score is " + numberCorrect +" out of " + numberTotalQuestions;
+    newQuestion.appendChild(yourScore);
+    addTwoBreaks(newQuestion);
+    var enterInitials = document.createElement("p");
+    enterInitials.innerHTML = "Enter Initials:";
+    newQuestion.appendChild(enterInitials);
+    placeholderDiv.appendChild(newQuestion);
+}
+
 function addTwoBreaks(parentElement) {
     newBreak = document.createElement("br");
     parentElement.appendChild(newBreak);
@@ -167,6 +188,7 @@ function displayCorrect() {
     correctMessage = document.createElement("p");
     correctMessage.innerHTML = "Correct!";
     newQuestion.appendChild(correctMessage);
+    numberCorrect += 1;
     setTimeout(nextQuestion, 1000);
 }
 
