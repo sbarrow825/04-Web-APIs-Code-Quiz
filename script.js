@@ -1,6 +1,8 @@
 var secondsLeft = document.querySelector("#seconds-left");
 var startButton = document.querySelector("#start-button");
 var startPage = document.querySelector("#start-page");
+var placeholderDiv = document.querySelector("#place-holder");
+var newQuestion;
 // var introTextTitle = document.querySelector("#intro-text-title");
 // var startButtonText = document.querySelector("#start-button-text");
 
@@ -22,4 +24,17 @@ function tick() {
 
 function setUpQuiz() {
     startPage.remove();
+    setUpQuestion1();
+}
+
+function setUpQuestion1() {
+    makeNewQuestionContainer();
+    var question1Prompt = document.createElement("h1");
+    question1Prompt.innerHTML = "This is a question";
+    newQuestion.appendChild(question1Prompt);
+    placeholderDiv.appendChild(newQuestion);
+}
+
+function makeNewQuestionContainer() {
+    newQuestion = document.createElement("div")
 }
