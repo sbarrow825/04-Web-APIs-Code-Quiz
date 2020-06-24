@@ -5,6 +5,8 @@ var placeholderDiv = document.querySelector("#place-holder");
 var allButtons;
 var question1Options = ["2", "A string is a datatype", "A string can be mutated", "A string is denoted by quotation marks at the beginning and end", "A string can be saved to local storage on the browser"];
 var question2Options = ["1", "Python", "JavaScript", "CSS", "html"];
+var question3Options = ["4", "var = x = 5", "int x = 5", "integer x = 5", "var x = 5"];
+var question4Options = ["4", "(type)=", "==", "(type)==", "==="];
 var newQuestion;
 var newButton;
 var newButtons;
@@ -83,6 +85,50 @@ function setUpQuestion2() {
 
 function setUpQuestion3() {
     makeNewQuestionContainer();
+    var question3Prompt = document.createElement("h1");
+    question3Prompt.innerHTML = "Which of these options is the correct JavaScript syntax for setting the variable x to the integer value of 5";
+    newQuestion.appendChild(question3Prompt);
+    addTwoBreaks(newQuestion);
+    for (i = 1; i < question3Options.length; i += 1) {
+        newButton = document.createElement("button");
+        newButton.innerHTML = i + ") " + question3Options[i];
+        newButton.classList.add("button");
+        newButton.classList.add("answer-button");
+        if (parseInt(question3Options[0]) === i) {
+            newButton.setAttribute("data-correct", "true");
+        } else {
+            newButton.setAttribute("data-correct", "false");
+        }
+        newButton.style.float = "left";
+        newQuestion.appendChild(newButton);
+        addTwoBreaks(newQuestion);
+    }
+    placeholderDiv.appendChild(newQuestion);
+    addNewEventListeners();
+}
+
+function setUpQuestion4() {
+    makeNewQuestionContainer();
+    var question4Prompt = document.createElement("h1");
+    question4Prompt.innerHTML = "Which of these options is the correct JavaScript syntax for comparing both the type and value of two elements";
+    newQuestion.appendChild(question4Prompt);
+    addTwoBreaks(newQuestion);
+    for (i = 1; i < question4Options.length; i += 1) {
+        newButton = document.createElement("button");
+        newButton.innerHTML = i + ") " + question4Options[i];
+        newButton.classList.add("button");
+        newButton.classList.add("answer-button");
+        if (parseInt(question4Options[0]) === i) {
+            newButton.setAttribute("data-correct", "true");
+        } else {
+            newButton.setAttribute("data-correct", "false");
+        }
+        newButton.style.float = "left";
+        newQuestion.appendChild(newButton);
+        addTwoBreaks(newQuestion);
+    }
+    placeholderDiv.appendChild(newQuestion);
+    addNewEventListeners();
 }
 
 function addTwoBreaks(parentElement) {
@@ -138,7 +184,9 @@ function nextQuestion() {
         setUpQuestion2();
     } else if (currentQuestion === 2) {
         setUpQuestion3();
-    } else {
+    } else if (currentQuestion === 3) {
         setUpQuestion4();
+    } else {
+        displayEndScreen();
     }
 }
